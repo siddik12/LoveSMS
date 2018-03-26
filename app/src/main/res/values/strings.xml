@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Love SMS</string>
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="more_apps">আরো এপ্স</string>
+    <string name="rate_us">৫ স্টার দিন</string>
+    <string name="share_the_app">অ্যাপ শেয়ার করুন</string>
+    <string name="love_sms">ভালবাসার এসএমএস</string>
 
 </resources>

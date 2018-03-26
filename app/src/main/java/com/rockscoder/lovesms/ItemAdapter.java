@@ -1,6 +1,5 @@
 package com.rockscoder.lovesms;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,12 +13,12 @@ import java.util.List;
  * Created by Siddiqur on 3/8/2018.
  */
 
-public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageViewHolder> {
+public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MessageViewHolder> {
 
-    private List<Message> messageList;
+    private List<Item> itemList;
 
-    public MessageAdapter(List<Message> messageList) {
-        this.messageList = messageList;
+    ItemAdapter(List<Item> itemList) {
+        this.itemList = itemList;
     }
 
     @Override
@@ -29,21 +28,21 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
     @Override
     public void onBindViewHolder(MessageViewHolder holder, int position) {
-        Message message = messageList.get(position);
-        holder.desc.setText(message.getMessageText());
+        Item item = itemList.get(position);
+        holder.desc.setText(item.getMessageText());
     }
 
     @Override
     public int getItemCount() {
-        return messageList.size();
+        return itemList.size();
     }
 
-    public class MessageViewHolder extends RecyclerView.ViewHolder {
-        public TextView desc;
-        public ImageView likeImageView;
-        public ImageView shareImg;
+    class MessageViewHolder extends RecyclerView.ViewHolder {
+        TextView desc;
+        ImageView likeImageView;
+        ImageView shareImg;
 
-        public MessageViewHolder(View itemView) {
+        MessageViewHolder(View itemView) {
             super(itemView);
             this.desc = itemView.findViewById(R.id.statusTextView);
             this.shareImg = itemView.findViewById(R.id.shareImageView);
