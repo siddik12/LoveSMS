@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.gms.ads.AdListener;
@@ -34,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void adsInit(){
         mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice("179FC4BC265DDDCA3F6A417898F00B8A").build();
         mAdView.loadAd(adRequest);
         mAdView.setAdListener(new AdListener() {
             @Override
@@ -52,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void share(View view) {
+        shareApp();
+    }
+
+    public void shareApp(){
         Intent share = new Intent("android.intent.action.SEND");
         share.setType("text/plain");
         share.putExtra("android.intent.extra.SUBJECT", this.appsTitle);
@@ -95,14 +101,30 @@ public class MainActivity extends AppCompatActivity {
 
     public void openApp(){
         if (!mInterstitialAd.isLoading() && !mInterstitialAd.isLoaded()) {
-            mInterstitialAd.loadAd(new AdRequest.Builder().build());
+            mInterstitialAd.loadAd(new AdRequest.Builder().addTestDevice("179FC4BC265DDDCA3F6A417898F00B8A").build());
         }
         Intent intent = new Intent(MainActivity.this,MessageActivity.class);
         startActivity(intent);
         count++;
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.shareButton:
+                shareApp();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
 
     private void initInterstitial(){
         MobileAds.initialize(this,
@@ -115,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAdFailedToLoad(int errorCode) {
                 // Code to be executed when an ad request fails.
-                mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                mInterstitialAd.loadAd(new AdRequest.Builder().addTestDevice("179FC4BC265DDDCA3F6A417898F00B8A").build());
             }
 
             @Override
