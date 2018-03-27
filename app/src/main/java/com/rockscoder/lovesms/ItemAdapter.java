@@ -21,11 +21,11 @@ import static android.content.Context.CLIPBOARD_SERVICE;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MessageViewHolder> {
 
-    private List<Item> itemList;
+    private List<ListItem> listItemList;
 
 
-    ItemAdapter(List<Item> itemList) {
-        this.itemList = itemList;
+    ItemAdapter(List<ListItem> listItemList) {
+        this.listItemList = listItemList;
     }
 
     @Override
@@ -35,13 +35,13 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MessageViewHol
 
     @Override
     public void onBindViewHolder(MessageViewHolder holder, int position) {
-        Item item = itemList.get(position);
-        holder.desc.setText(item.getMessageText());
+        ListItem listItem = listItemList.get(position);
+        holder.desc.setText(listItem.getMessageText());
     }
 
     @Override
     public int getItemCount() {
-        return itemList.size();
+        return listItemList.size();
     }
 
     class MessageViewHolder extends RecyclerView.ViewHolder {

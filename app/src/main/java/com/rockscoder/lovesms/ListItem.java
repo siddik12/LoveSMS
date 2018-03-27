@@ -4,10 +4,10 @@ package com.rockscoder.lovesms;
  * Created by Siddiqur on 3/8/2018.
  */
 
-public class Item {
+public class ListItem {
     private String messageText;
 
-    public Item(String messageText) {
+    public ListItem(String messageText) {
         this.messageText = messageText;
     }
 
