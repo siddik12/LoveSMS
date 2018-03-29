@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void adsInit(){
         mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice("179FC4BC265DDDCA3F6A417898F00B8A").build();
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("179FC4BC265DDDCA3F6A417898F00B8A").build();
         mAdView.loadAd(adRequest);
         mAdView.setAdListener(new AdListener() {
             @Override
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void openApp(){
         if (!mInterstitialAd.isLoading() && !mInterstitialAd.isLoaded()) {
-            mInterstitialAd.loadAd(new AdRequest.Builder().addTestDevice("179FC4BC265DDDCA3F6A417898F00B8A").build());
+            mInterstitialAd.loadAd(new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("179FC4BC265DDDCA3F6A417898F00B8A").build());
         }
         Intent intent = new Intent(MainActivity.this,MessageActivity.class);
         startActivity(intent);
@@ -128,14 +128,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void initInterstitial(){
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-4789821447624417/3996127869");
+        mInterstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
 
         mInterstitialAd.setAdListener(new AdListener() {
 
             @Override
             public void onAdFailedToLoad(int errorCode) {
                 // Code to be executed when an ad request fails.
-                mInterstitialAd.loadAd(new AdRequest.Builder().addTestDevice("179FC4BC265DDDCA3F6A417898F00B8A").build());
+                mInterstitialAd.loadAd(new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("179FC4BC265DDDCA3F6A417898F00B8A").build());
             }
 
             @Override

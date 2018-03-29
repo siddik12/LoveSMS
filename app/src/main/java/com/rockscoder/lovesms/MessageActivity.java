@@ -38,7 +38,7 @@ public class MessageActivity extends AppCompatActivity {
 
     public void adsInit(){
         mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice("179FC4BC265DDDCA3F6A417898F00B8A").build();
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("179FC4BC265DDDCA3F6A417898F00B8A").build();
         mAdView.loadAd(adRequest);
         mAdView.setAdListener(new AdListener() {
             @Override
