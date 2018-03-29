@@ -17,6 +17,7 @@ public class MessageActivity extends AppCompatActivity {
     private AdView mAdView;
     String appsTitle;
     String packageName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +27,7 @@ public class MessageActivity extends AppCompatActivity {
         init();
     }
 
-    public void init(){
+    public void init() {
         this.packageName = getApplication().getPackageName();
         this.appsTitle = getApplication().getString(R.string.app_name);
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
@@ -36,9 +37,12 @@ public class MessageActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    public void adsInit(){
+    public void adsInit() {
         mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("179FC4BC265DDDCA3F6A417898F00B8A").build();
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("179FC4BC265DDDCA3F6A417898F00B8A")
+                .build();
         mAdView.loadAd(adRequest);
         mAdView.setAdListener(new AdListener() {
             @Override
@@ -57,13 +61,13 @@ public class MessageActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu,menu);
+        getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.shareButton:
                 shareApp();
                 return true;
@@ -73,7 +77,31 @@ public class MessageActivity extends AppCompatActivity {
 
     }
 
-    public void shareApp(){
+    @Override
+    public void onPause() {
+        if (mAdView != null) {
+            mAdView.pause();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mAdView != null) {
+            mAdView.resume();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mAdView != null) {
+            mAdView.destroy();
+        }
+        super.onDestroy();
+    }
+
+    public void shareApp() {
         Intent share = new Intent("android.intent.action.SEND");
         share.setType("text/plain");
         share.putExtra("android.intent.extra.SUBJECT", this.appsTitle);

@@ -5,9 +5,8 @@
     <string name="more_apps">আরো অ্যাপ</string>
     <string name="rate_us">৫ স্টার দিন</string>
     <string name="share_the_app">অ্যাপ শেয়ার করুন</string>
-    <string name="love_sms">ভালবাসার এসএমএস</string>
+    <string name="love_sms">ভালোবাসার এসএমএস</string>
     <string name="share_this">শেয়ার করুন</string>
     <string name="copy_this">কপি</string>
     <string name="copy_done">কপি করা হয়েছে</string>
-
 </resources>

@@ -23,7 +23,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="scalingPercent" value="56" />
+                                                <entry key="scalingPercent" value="54" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -33,9 +33,9 @@
                                   </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="backgroundAssetType" value="COLOR" />
                                       <entry key="backgroundColor" value="dc050d" />
-                                      <entry key="foregroundImage" value="C:\Users\Siddik\Desktop\lovesms2.png" />
+                                      <entry key="backgroundImage" value="C:\Users\Siddik\Desktop\lovelogobg.jpg" />
+                                      <entry key="foregroundImage" value="C:\Users\Siddik\Desktop\logofont.png" />
                                     </map>
                                   </option>
                                 </PersistentState>

@@ -34,24 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void adsInit(){
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("179FC4BC265DDDCA3F6A417898F00B8A").build();
-        mAdView.loadAd(adRequest);
-        mAdView.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                mAdView.setVisibility(View.VISIBLE);
-            }
 
-            @Override
-            public void onAdFailedToLoad(int errorCode) {
-                super.onAdFailedToLoad(errorCode);
-                mAdView.setVisibility(View.GONE);
-            }
-        });
-    }
 
     public void share(View view) {
         shareApp();
@@ -90,6 +73,30 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onPause() {
+        if (mAdView != null) {
+            mAdView.pause();
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mAdView != null) {
+            mAdView.resume();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (mAdView != null) {
+            mAdView.destroy();
+        }
+        super.onDestroy();
+    }
+
     private void showInterstitial() {
         // Show the ad if it's ready. Otherwise toast and restart the activity.
         if (mInterstitialAd != null && mInterstitialAd.isLoaded() && count % 10 == 1) {
@@ -126,6 +133,28 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void adsInit(){
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder()
+                .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                .addTestDevice("179FC4BC265DDDCA3F6A417898F00B8A")
+                .build();
+        mAdView.loadAd(adRequest);
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                mAdView.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                super.onAdFailedToLoad(errorCode);
+                mAdView.setVisibility(View.GONE);
+            }
+        });
+    }
+
     private void initInterstitial(){
         mInterstitialAd = new InterstitialAd(this);
         mInterstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
@@ -135,7 +164,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAdFailedToLoad(int errorCode) {
                 // Code to be executed when an ad request fails.
-                mInterstitialAd.loadAd(new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).addTestDevice("179FC4BC265DDDCA3F6A417898F00B8A").build());
+                mInterstitialAd.loadAd(new AdRequest.Builder()
+                        .addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
+                        .addTestDevice("179FC4BC265DDDCA3F6A417898F00B8A")
+                        .build());
             }
 
             @Override
